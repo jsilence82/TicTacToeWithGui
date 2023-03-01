@@ -17,24 +17,20 @@ public class Adapter implements ActionListener {
         this.view = v;
     }
 
-    private void resetAll(){
+    private void resetAll() {
         view.resetGame();
         controller.resetGame();
     }
 
     public void actionPerformed(ActionEvent e) {
         if (view.isReset(e) && view.getGameRunning()) {
-                int choice = JOptionPane.showConfirmDialog(null, "Game is running. Do you really want to abandon?",
-                        "Abandon Game", JOptionPane.YES_NO_OPTION);
-                if (choice == JOptionPane.YES_OPTION) {
-                    resetAll();
-                }
+            if (abandonGameConfirm()) {
+                resetAll();
+            }
         } else if (view.isReset(e)) {
             resetAll();
         } else if (view.isExit(e)) {
-            int choice = JOptionPane.showConfirmDialog(null, "Do you really want to exit?",
-                    "Exit Game", JOptionPane.YES_NO_OPTION);
-            if (choice == JOptionPane.YES_OPTION) {
+            if (exitProgramConfirm()) {
                 System.exit(0);
             }
         } else if (view.isUndo(e)) {
@@ -43,6 +39,18 @@ public class Adapter implements ActionListener {
             ArrayList<Integer> position = view.getPosition(e);
             controller.setRequest(position);
         }
+    }
+
+    private boolean abandonGameConfirm() {
+        int choice = JOptionPane.showConfirmDialog(null, "Game is running. Do you really want to abandon?",
+                "Abandon Game", JOptionPane.YES_NO_OPTION);
+        return choice == JOptionPane.YES_OPTION;
+    }
+
+    private boolean exitProgramConfirm() {
+        int choice = JOptionPane.showConfirmDialog(null, "Do you really want to exit?",
+                "Exit Game", JOptionPane.YES_NO_OPTION);
+        return choice == JOptionPane.YES_OPTION;
     }
 }
 

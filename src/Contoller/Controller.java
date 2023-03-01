@@ -85,7 +85,7 @@ public class Controller {
 
             gameState.undoBoardMove(lastTurn.stream().mapToInt(i -> i).toArray());
             gameState.switchPlayers();
-            view.playerTurnLabel.setText(gameState.getMessage());
+
             view.undoLastTurn(lastTurn.stream().mapToInt(i -> i).toArray());
 
             if(gameState.isComputersTurn()) {
@@ -94,6 +94,7 @@ public class Controller {
                 gameState.switchPlayers();
                 view.undoLastTurn(computersLastTurn.stream().mapToInt(i -> i).toArray());
             }
+            view.playerTurnLabel.setText(gameState.getMessage());
         }
     }
 }

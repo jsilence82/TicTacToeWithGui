@@ -2,7 +2,7 @@ package Model.players;
 public class HumanPlayer extends Player {
     HumanPlayer(String playerName, String playersMark) {
         super(playerName, playersMark, false);
-        setPlayerMessage("It is " + getPlayerName() + "'s turn: ");
+        setPlayerMessage("It is " + getPlayerName() + "'s turn");
     }
 
     public String getPlayerName() {
