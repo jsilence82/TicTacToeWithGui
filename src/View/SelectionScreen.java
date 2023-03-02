@@ -177,7 +177,7 @@ public class SelectionScreen extends JFrame {
             try {
                 String player1Selection = buttonGroupPlayer1.getSelection().getActionCommand();
                 String player2Selection = buttonGroupPlayer2.getSelection().getActionCommand();
-                controller.startNewGame(player1Name.getText(), player2Name.getText(),Integer.parseInt(player1Selection), Integer.parseInt(player2Selection));
+                controller.startNewGame(player1Name.getText(), player2Name.getText(), Integer.parseInt(player1Selection), Integer.parseInt(player2Selection));
                 SelectionScreen.this.dispose();
             } catch (NullPointerException npe) {
                 JOptionPane.showMessageDialog(null, "Please select your players", "Invalid Input",
@@ -187,6 +187,5 @@ public class SelectionScreen extends JFrame {
         buttonPanel.add(startGameButton, BorderLayout.EAST);
         setVisible(true);
     }
-
 }
 

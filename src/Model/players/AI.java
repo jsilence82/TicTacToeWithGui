@@ -1,11 +1,12 @@
 package Model.players;
 
 import Model.Board;
+
 import java.util.HashMap;
 import java.util.Map.Entry;
 import java.util.Objects;
 
-public class AI extends Player{
+public class AI extends Player {
 
     Board board;
     String computer;
@@ -29,12 +30,12 @@ public class AI extends Player{
     }
 
     private int evaluate(HashMap<Integer, String> mapped) {
-        int[][] winningConditions = {{1, 2, 3}, {4,5,6}, {7, 8 ,9}, {1, 4, 7}, {2, 5, 8},
+        int[][] winningConditions = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}, {1, 4, 7}, {2, 5, 8},
                 {3, 6, 9}, {1, 5, 9}, {3, 5, 7}};
-        for(int[] numbers: winningConditions){
-            if(Objects.equals(mapped.get(numbers[0]), mapped.get(numbers[1])) &&
-            Objects.equals(mapped.get(numbers[1]), mapped.get(numbers[2]))){
-                if(Objects.equals(mapped.get(numbers[0]), computer)){
+        for (int[] numbers : winningConditions) {
+            if (Objects.equals(mapped.get(numbers[0]), mapped.get(numbers[1])) &&
+                    Objects.equals(mapped.get(numbers[1]), mapped.get(numbers[2]))) {
+                if (Objects.equals(mapped.get(numbers[0]), computer)) {
                     return +10;
                 } else if (Objects.equals(mapped.get(numbers[0]), opponent)) {
                     return -10;
@@ -67,10 +68,10 @@ public class AI extends Player{
 
     private int minMax(HashMap<Integer, String> mapped, int depth, Boolean isMax) {
         int score = evaluate(mapped);
-        
+
         if (score == 10)
             return score;
-        
+
         if (score == -10)
             return score;
 

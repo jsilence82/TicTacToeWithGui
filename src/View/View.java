@@ -2,6 +2,7 @@ package View;
 
 import Adapter.Adapter;
 import Contoller.Controller;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
@@ -53,9 +54,9 @@ public class View extends JFrame {
         JPanel messages = new JPanel(new BorderLayout());
         playerTurnLabel.setFont(new Font("Ink Free", Font.BOLD, 20));
         playerTurnLabel.setHorizontalAlignment(JLabel.CENTER);
-        playerXLabel.setFont(new Font("Ink Free", Font.BOLD,20));
+        playerXLabel.setFont(new Font("Ink Free", Font.BOLD, 20));
         playerXLabel.setHorizontalAlignment(JLabel.CENTER);
-        playerOLabel.setFont(new Font("Ink Free", Font.BOLD,20));
+        playerOLabel.setFont(new Font("Ink Free", Font.BOLD, 20));
         playerOLabel.setHorizontalAlignment(JLabel.CENTER);
         messages.setBackground(Color.white);
         gameWindow.add(messages, BorderLayout.NORTH);
@@ -98,6 +99,7 @@ public class View extends JFrame {
     public boolean isExit(ActionEvent e) {
         return e.getSource() == exit;
     }
+
     public boolean isUndo(ActionEvent e) {
         return e.getSource() == undo;
     }
@@ -148,6 +150,7 @@ public class View extends JFrame {
     public void setGameRunning(boolean b) {
         this.gameRunning = b;
     }
+
     public boolean getGameRunning() {
         return gameRunning;
     }

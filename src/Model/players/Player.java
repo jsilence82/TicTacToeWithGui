@@ -28,6 +28,7 @@ public abstract class Player {
     public void setPlayerMessage(String playerMessage) {
         this.playerMessage = playerMessage;
     }
+
     public boolean isComputer() {
         return isComputer;
     }
@@ -37,6 +38,7 @@ public abstract class Player {
     public void setPlayerPick(int pick) {
         this.playersPick = pick;
     }
+
     public int getPlayersPick() {
         return playersPick;
     }

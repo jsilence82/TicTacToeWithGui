@@ -24,6 +24,7 @@ public class GameState {
         this.gameOver = false;
         this.message = players[turn].getPlayerMessage();
     }
+
     public Player createPlayer(int playerType, String playerName, String playersMark, Board board) {
         return Factory.playerFactory(playerType, playerName, playersMark, board);
     }
