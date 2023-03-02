@@ -13,6 +13,7 @@ public class Controller {
 
     private GameState gameState;
     private View view;
+    private Timer timer;
 
     private final Stack<List<Integer>> lastMoves;
 
@@ -31,29 +32,36 @@ public class Controller {
         view.playerXLabel.setText("X: " + gameState.getPlayer1Name());
         view.playerOLabel.setText("O: " + gameState.getPlayer2Name());
         if (gameState.isComputersTurn()) {
-            updateGameState();
+            waitTwoSeconds();
         }
     }
 
     public void updateGameState() {
         gameState.updateGame();
-
         int xCoord = gameState.getCurrentSpace()[0];
         int yCoord = gameState.getCurrentSpace()[1];
         saveLastMove(xCoord, yCoord);
         view.update(xCoord, yCoord, gameState.getCurrentMark());
-
-        if(gameState.isGameOver()){
+        if (gameState.isGameOver()) {
             view.gameIsOver();
             view.playerTurnLabel.setText(gameState.getMessage());
             lastMoves.clear();
-        } else{
+        } else {
             gameState.switchPlayers();
             view.playerTurnLabel.setText(gameState.getMessage());
             if (gameState.isComputersTurn() && !gameState.isGameOver()) {
-                updateGameState();
+                waitTwoSeconds();
             }
         }
+    }
+
+    private void waitTwoSeconds() {
+        timer = new Timer(2000, e -> {
+            updateGameState();
+            timer.stop();
+        });
+        timer.setRepeats(false);
+        timer.start();
     }
 
     private void saveLastMove(int xCoord, int yCoord) {
@@ -61,7 +69,6 @@ public class Controller {
         list.add(xCoord);
         list.add(yCoord);
         lastMoves.push(list);
-
     }
 
     public void setRequest(ArrayList<Integer> position) {
@@ -77,7 +84,7 @@ public class Controller {
     }
 
     public void undoMove() {
-        if(lastMoves.isEmpty()){
+        if (lastMoves.isEmpty()) {
             JOptionPane.showMessageDialog(null, "No moves to undo", "Empty",
                     JOptionPane.WARNING_MESSAGE);
         } else {
@@ -88,7 +95,7 @@ public class Controller {
 
             view.undoLastTurn(lastTurn.stream().mapToInt(i -> i).toArray());
 
-            if(gameState.isComputersTurn()) {
+            if (gameState.isComputersTurn()) {
                 List<Integer> computersLastTurn = lastMoves.pop();
                 gameState.undoBoardMove(computersLastTurn.stream().mapToInt(i -> i).toArray());
                 gameState.switchPlayers();
