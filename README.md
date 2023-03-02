@@ -13,6 +13,7 @@ generator), or against an AI. It also allows the user to give names for any huma
 
 The information is sent to the controller and the View (the game field) is displayed. The Controller class handles all requests from the View to the GameState
 class, which is the interface to the classes contained in the Model section.
+![MVC-classOnly-edit](https://user-images.githubusercontent.com/98595145/222442120-430923df-122a-4940-b979-ccfb9d30cf57.png)
 
 # 2 - Adapter
 An adapter pattern was used to handle the various requests between Controller and Model and View based on the ActionListener source. 
@@ -23,6 +24,7 @@ number generator, considered very easy to beat), and an AI model (more info on t
 
 All three classes inherit from an abstract class: Player. The classes are then created and returned via a Factory class based on the user's input on the selection
 screen.
+![factoryclass_edit_edit](https://user-images.githubusercontent.com/98595145/222441951-d12bcb36-549f-4cef-9a48-1aaa608ebe83.png)
 
 # 4 - AI model
 The AI class uses a miniMax algorithm to calculate the best move for the computer. It will search for the best available space for a win, and it will also
