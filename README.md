@@ -31,11 +31,11 @@ block its opponent if it calculates the opponent has a winning move.
 Getting more than a draw against the AI is impossible.
 
 # 4 - The GameState class
-GameState is created by the Controller and is the entry point into the game's model. A few additional notes about how the GameState class funtions:
+GameState is created by the Controller and is the entry point into the game's model. A few additional notes about how the GameState class functions:
 
-- Utilizes a Swing Timer to introduce a two second delay for the computer to make its move (assuming one of the two computer options is selected as an
+- Utilizes a Swing Timer to introduce a two-second delay for the computer to make its move (assuming one of the two computer options is selected as an
 opponent). This was done to give time for the message that the computer was picking to appear, the move to be made, and the switch to the next player to occur.
-- An undo button is also availble, implemented by use of a stack that stores the previous moves. If the game is Player vs. Player, the undo button will remove
+- An undo button is also available, implemented by use of a stack that stores the previous moves. If the game is Player vs. Player, the undo button will remove
 only the last player's move. If the game is Player vs. Computer, the undo button removes both the computer's and player's last moves.
 
 # 5 - Further updates
