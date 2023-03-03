@@ -16,8 +16,8 @@ public class SelectionScreen extends JFrame {
     public SelectionScreen(Controller controller) {
         setTitle("New Game");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setBounds(100, 100, 600, 300);
-        setResizable(false);
+        setBounds(300, 300, 720, 300);
+        setResizable(true);
         setLocationRelativeTo(null);
         JPanel contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
