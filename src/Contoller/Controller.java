@@ -81,9 +81,8 @@ public class Controller {
 
     public void undoMove() {
         if (lastMoves.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "No moves to undo", "Empty",
-                    JOptionPane.WARNING_MESSAGE);
-        } else {
+            throw new Exceptions.MoveStackEmptyException();         
+        } 
             List<Integer> lastTurn = lastMoves.pop();
 
             gameControl.undoBoardMove(lastTurn.stream().mapToInt(i -> i).toArray());
@@ -98,6 +97,6 @@ public class Controller {
                 uiControl.undoLastTurn(computersLastTurn.stream().mapToInt(i -> i).toArray());
             }
             uiControl.setPlayerTurnLabel(gameControl.getMessage());
-        }
+        
     }
 }

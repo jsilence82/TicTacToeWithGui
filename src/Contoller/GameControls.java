@@ -1,5 +1,6 @@
 package Contoller;
 
+
 public interface GameControls {
 
     public void updateGame();
@@ -23,5 +24,4 @@ public interface GameControls {
     public String getCurrentMark();
 
     public void setHumanPlayersPick(int[] position);
-
 }

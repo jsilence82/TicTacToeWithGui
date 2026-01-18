@@ -1,6 +1,8 @@
 
 package View;
 
+
+
 import Contoller.Controller;
 
 public interface UIControl {
@@ -24,4 +26,9 @@ public interface UIControl {
     public void resetGame();
 
     public void launchGame();
+
+    public void displayErrorMessage(String message);
+
+    public boolean displayConfirmationMessage(String message);
+
 }

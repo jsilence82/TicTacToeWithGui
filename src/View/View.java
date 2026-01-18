@@ -186,6 +186,19 @@ public class View extends JFrame implements UIControl{
         this.playerOLabel.setText( "O: " + player2Name);
     }
 
+    @Override
+    public void displayErrorMessage(String message) {
+         JOptionPane.showMessageDialog(null, message, "Empty",
+                    JOptionPane.WARNING_MESSAGE);
+    }
+
+    @Override
+    public boolean displayConfirmationMessage(String message) {
+        int choice = JOptionPane.showConfirmDialog(null, message,
+                "Exit Game", JOptionPane.YES_NO_OPTION);
+        return choice == JOptionPane.YES_OPTION;
+    }
+
     
 
 }
