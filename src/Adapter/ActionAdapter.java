@@ -2,17 +2,17 @@ package Adapter;
 
 import Contoller.Controller;
 import Exceptions.MoveStackEmptyException;
-import View.View;
+import View.GameBoardView;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class Adapter implements ActionListener {
+public class ActionAdapter implements ActionListener {
     private final Controller controller;
-    private final View view;
+    private final GameBoardView view;
 
-    public Adapter(Controller controller, View view) {
+    public ActionAdapter(Controller controller, GameBoardView view) {
         this.controller = controller;
         this.view = view;
     }

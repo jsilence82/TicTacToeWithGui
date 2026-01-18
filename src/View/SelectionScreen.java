@@ -15,7 +15,7 @@ public class SelectionScreen extends JFrame {
     private  String player1Type;
     private  String player2Type;
 
-    public SelectionScreen(View view) {
+    public SelectionScreen(GameBoardView view) {
         setTitle("New Game");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setBounds(300, 300, 720, 300);

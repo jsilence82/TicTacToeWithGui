@@ -1,6 +1,6 @@
 package View;
 
-import Adapter.Adapter;
+import Adapter.ActionAdapter;
 import Contoller.Controller;
 
 import java.awt.*;
@@ -8,7 +8,7 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import javax.swing.*;
 
-public class View extends JFrame implements UIControl{
+public class GameBoardView extends JFrame implements UIControl{
 
     private final JFrame gameWindow;
     private final JButton[][] spaces;
@@ -21,7 +21,7 @@ public class View extends JFrame implements UIControl{
     private boolean gameRunning;
     private Controller controller;
 
-    public View() {
+    public GameBoardView() {
         this.gameWindow = new JFrame("Tic Tac Toe");
         this.spaces = new JButton[3][3];
         this.reset = new JButton("New Game");
@@ -92,7 +92,7 @@ public class View extends JFrame implements UIControl{
     }
 
     public void setActionListener(Controller controller) {
-        Adapter adapter = new Adapter(controller, this);
+        ActionAdapter adapter = new ActionAdapter(controller, this);
         for (int row = 0; row < 3; row++) {
             for (int column = 0; column < 3; column++) {
                 spaces[row][column].addActionListener(adapter);
