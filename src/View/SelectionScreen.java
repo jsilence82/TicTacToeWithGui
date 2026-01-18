@@ -1,6 +1,6 @@
 package View;
 
-import Contoller.Controller;
+import Model.players.PlayerType;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -12,8 +12,10 @@ public class SelectionScreen extends JFrame {
 
     private final JTextField player1Name;
     private final JTextField player2Name;
+    private  String player1Type;
+    private  String player2Type;
 
-    public SelectionScreen(Controller controller) {
+    public SelectionScreen(View view) {
         setTitle("New Game");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setBounds(300, 300, 720, 300);
@@ -71,10 +73,10 @@ public class SelectionScreen extends JFrame {
         gbc_player1Name.gridy = 0;
         player1Select.add(player1Name, gbc_player1Name);
 
-        JRadioButton humanButton1 = new JRadioButton("Human Player");
+        JRadioButton humanButton1 = new JRadioButton(PlayerType.Human.getDescription());
         ItemListener player1FieldListener = e -> player1Name.setEnabled(e.getStateChange() == ItemEvent.SELECTED);
         humanButton1.addItemListener(player1FieldListener);
-        humanButton1.setActionCommand("1");
+        humanButton1.setActionCommand(PlayerType.Human.getDisplayName());
         ButtonGroup buttonGroupPlayer1 = new ButtonGroup();
         buttonGroupPlayer1.add(humanButton1);
         GridBagConstraints gbc_humanButton1 = new GridBagConstraints();
@@ -84,8 +86,8 @@ public class SelectionScreen extends JFrame {
         gbc_humanButton1.gridy = 1;
         player1Select.add(humanButton1, gbc_humanButton1);
 
-        JRadioButton computerButton1 = new JRadioButton("Random (Easy)");
-        computerButton1.setActionCommand("2");
+        JRadioButton computerButton1 = new JRadioButton(PlayerType.Computer.getDescription());
+        computerButton1.setActionCommand(PlayerType.Computer.getDisplayName());
         buttonGroupPlayer1.add(computerButton1);
         GridBagConstraints gbc_computerButton1 = new GridBagConstraints();
         gbc_computerButton1.gridwidth = 2;
@@ -95,8 +97,8 @@ public class SelectionScreen extends JFrame {
         gbc_computerButton1.gridy = 2;
         player1Select.add(computerButton1, gbc_computerButton1);
 
-        JRadioButton aiButton1 = new JRadioButton("AI (Impossible)");
-        aiButton1.setActionCommand("3");
+        JRadioButton aiButton1 = new JRadioButton(PlayerType.AI.getDescription());
+        aiButton1.setActionCommand(PlayerType.AI.getDisplayName());
         buttonGroupPlayer1.add(aiButton1);
         GridBagConstraints gbc_aiButton1 = new GridBagConstraints();
         gbc_aiButton1.insets = new Insets(0, 0, 0, 5);
@@ -137,9 +139,9 @@ public class SelectionScreen extends JFrame {
         player2Select.add(player2Name, gbc_player2Name);
         player2Name.setColumns(10);
 
-        JRadioButton humanButton2 = new JRadioButton("Human Player");
+        JRadioButton humanButton2 = new JRadioButton(PlayerType.Human.getDescription());
         ItemListener player2Listener = e -> player2Name.setEnabled(e.getStateChange() == ItemEvent.SELECTED);
-        humanButton2.setActionCommand("1");
+        humanButton2.setActionCommand(PlayerType.Human.getDisplayName());
         humanButton2.addItemListener(player2Listener);
         ButtonGroup buttonGroupPlayer2 = new ButtonGroup();
         buttonGroupPlayer2.add(humanButton2);
@@ -150,8 +152,8 @@ public class SelectionScreen extends JFrame {
         gbc_humanButton2.gridy = 1;
         player2Select.add(humanButton2, gbc_humanButton2);
 
-        JRadioButton computerButton2 = new JRadioButton("Random (Easy)");
-        computerButton2.setActionCommand("2");
+        JRadioButton computerButton2 = new JRadioButton(PlayerType.Computer.getDescription());
+        computerButton2.setActionCommand(PlayerType.Computer.getDisplayName());
         buttonGroupPlayer2.add(computerButton2);
         GridBagConstraints gbc_computerButton2 = new GridBagConstraints();
         gbc_computerButton2.insets = new Insets(0, 0, 5, 5);
@@ -159,8 +161,8 @@ public class SelectionScreen extends JFrame {
         gbc_computerButton2.gridy = 2;
         player2Select.add(computerButton2, gbc_computerButton2);
 
-        JRadioButton aiButton2 = new JRadioButton("AI (Impossible)");
-        aiButton2.setActionCommand("3");
+        JRadioButton aiButton2 = new JRadioButton(PlayerType.AI.getDescription());
+        aiButton2.setActionCommand( PlayerType.AI.getDisplayName());
         buttonGroupPlayer2.add(aiButton2);
         GridBagConstraints gbc_aiButton2 = new GridBagConstraints();
         gbc_aiButton2.insets = new Insets(0, 0, 0, 5);
@@ -175,9 +177,9 @@ public class SelectionScreen extends JFrame {
         JButton startGameButton = new JButton("Start Game");
         startGameButton.addActionListener(e -> {
             try {
-                String player1Selection = buttonGroupPlayer1.getSelection().getActionCommand();
-                String player2Selection = buttonGroupPlayer2.getSelection().getActionCommand();
-                controller.startNewGame(player1Name.getText(), player2Name.getText(), Integer.parseInt(player1Selection), Integer.parseInt(player2Selection));
+                player1Type = buttonGroupPlayer1.getSelection().getActionCommand();
+                player2Type = buttonGroupPlayer2.getSelection().getActionCommand();
+                view.setPlayersFromSelectionScreen(player1Name.getText(), player2Name.getText(), player1Type, player2Type);
                 SelectionScreen.this.dispose();
             } catch (NullPointerException npe) {
                 JOptionPane.showMessageDialog(null, "Please select your players", "Invalid Input",

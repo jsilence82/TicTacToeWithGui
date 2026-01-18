@@ -6,16 +6,16 @@ import java.util.HashMap;
 import java.util.Map.Entry;
 import java.util.Objects;
 
-public class AI extends Player {
+public class AI extends Player implements ComputerPlayer {
 
     Board board;
     String computer;
     String opponent;
 
-    AI(Board board, String playersMark) {
-        super("AI Computer", playersMark, true);
-        this.board = board;
+    AI(String playersMark) {
+        super("AI Computer", playersMark);
         this.computer = playersMark;
+        setIsComputer(true);
         if (playersMark.equals("O")) {
             this.opponent = "X";
         } else {
@@ -26,7 +26,8 @@ public class AI extends Player {
 
     @Override
     public int pickASpace() {
-        return findBestMove(board.getBoard());
+        HashMap<Integer, String> tempBoard = board.getBoard();
+        return findBestMove(tempBoard);
     }
 
     private int evaluate(HashMap<Integer, String> mapped) {
@@ -103,5 +104,10 @@ public class AI extends Player {
             }
         }
         return best;
+    }
+
+    @Override
+    public void setBoard(Board board) {
+       this.board = board;
     }
 }

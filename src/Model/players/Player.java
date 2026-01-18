@@ -5,12 +5,11 @@ public abstract class Player {
     private final String playersMark;
     private String playerMessage;
     private int playersPick;
-    private final boolean isComputer;
+    private boolean isComputer;
 
-    Player(String playerName, String playersMark, boolean isComputer) {
+    Player(String playerName, String playersMark) {
         this.playerName = playerName;
         this.playersMark = playersMark;
-        this.isComputer = isComputer;
     }
 
     public String getPlayerName() {
@@ -31,6 +30,10 @@ public abstract class Player {
 
     public boolean isComputer() {
         return isComputer;
+    }
+
+    public void setIsComputer(Boolean isComputer){
+        this.isComputer = isComputer;
     }
 
     public abstract int pickASpace();

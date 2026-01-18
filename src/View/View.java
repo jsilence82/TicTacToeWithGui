@@ -8,7 +8,7 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import javax.swing.*;
 
-public class View extends JFrame {
+public class View extends JFrame implements UIControl{
 
     private final JFrame gameWindow;
     private final JButton[][] spaces;
@@ -19,6 +19,7 @@ public class View extends JFrame {
     public final JLabel playerOLabel;
     private final JButton undo;
     private boolean gameRunning;
+    private Controller controller;
 
     public View() {
         this.gameWindow = new JFrame("Tic Tac Toe");
@@ -34,8 +35,18 @@ public class View extends JFrame {
     }
 
     public void setController(Controller controller) {
-        new SelectionScreen(controller);
+        this.controller = controller;
         setActionListener(controller);
+    }
+
+    public void setPlayersFromSelectionScreen(String player1Name, String player2Name, String player1Type, String player2Type) {
+        setGameRunning();
+        controller.startNewGame(player1Name, player2Name, player1Type, player2Type);
+    }
+
+    @Override
+    public void launchGame(){
+        new SelectionScreen(this);    
     }
 
     public void initialize() {
@@ -117,21 +128,23 @@ public class View extends JFrame {
         return position;
     }
 
+    @Override
     public void update(int row, int column, String symbol) {
         spaces[row][column].setText(symbol);
         spaces[row][column].setEnabled(false);
     }
 
+    @Override
     public void gameIsOver() {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 spaces[i][j].setEnabled(false);
             }
         }
-        setGameRunning(false);
+        this.gameRunning = false;
     }
 
-
+    @Override
     public void resetGame() {
         for (int row = 0; row < 3; row++) {
             for (int column = 0; column < 3; column++) {
@@ -140,19 +153,39 @@ public class View extends JFrame {
             }
         }
         playerTurnLabel.setText("Welcome to Tic Tac Toe!");
+        launchGame();
     }
 
+    @Override
     public void undoLastTurn(int[] lastTurn) {
         spaces[lastTurn[0]][lastTurn[1]].setText("");
         spaces[lastTurn[0]][lastTurn[1]].setEnabled(true);
     }
 
-    public void setGameRunning(boolean b) {
-        this.gameRunning = b;
+    @Override
+    public void setGameRunning() {
+        this.gameRunning = true;
     }
 
     public boolean getGameRunning() {
         return gameRunning;
     }
+
+    @Override
+    public void setPlayerTurnLabel(String message) {
+        this.playerTurnLabel.setText(message);
+    }
+
+    @Override
+    public void setPlayerXLabel(String player1Name) {
+        this.playerXLabel.setText("X: " + player1Name);
+    }
+
+    @Override
+    public void setPlayerOLabel(String player2Name) {
+        this.playerOLabel.setText( "O: " + player2Name);
+    }
+
+    
 
 }

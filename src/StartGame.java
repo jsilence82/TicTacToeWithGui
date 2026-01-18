@@ -1,13 +1,15 @@
 import Contoller.Controller;
+import View.UIControl;
 import View.View;
 
 
 public class StartGame {
 
     public static void main(String[] args) {
-            View view = new View();
+            UIControl ui = new View();
             Controller controller = new Controller();
-            controller.setView(view);
-            view.setController(controller);
+            controller.setUiControl(ui);
+            ui.setController(controller);
+            ui.launchGame();
     }
 }

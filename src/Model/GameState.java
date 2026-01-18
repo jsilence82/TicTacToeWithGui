@@ -1,11 +1,12 @@
 package Model;
 
-import Model.players.Factory;
+import Contoller.GameControls;
+import Model.players.ComputerPlayer;
 import Model.players.Player;
 
-public class GameState {
+public class GameState implements GameControls {
 
-    private final Board board;
+    private Board board;
     private int turn;
     private final Player[] players;
     private String currentMark;
@@ -15,20 +16,19 @@ public class GameState {
     private final Player player1;
     private final Player player2;
 
-    public GameState(String player1Name, String player2Name, int player1Type, int player2Type) {
+    public GameState(Player player1, Player player2) {
         this.board = new Board();
         this.turn = 0;
-        this.player1 = createPlayer(player1Type, player1Name, "X", board);
-        this.player2 = createPlayer(player2Type, player2Name, "O", board);
+        this.player1 = player1;
+        this.player2 = player2;
         this.players = new Player[]{player1, player2};
+        addBoardToPlayers();
         this.gameOver = false;
         this.message = players[turn].getPlayerMessage();
-    }
 
-    public Player createPlayer(int playerType, String playerName, String playersMark, Board board) {
-        return Factory.playerFactory(playerType, playerName, playersMark, board);
     }
-
+    
+    @Override
     public void updateGame() {
         Player current = players[turn];
         int playersPick = current.pickASpace();
@@ -39,12 +39,21 @@ public class GameState {
             gameOver = true;
         }
     }
+    private void addBoardToPlayers() {
+        for (Player player : players) {
+            if ( player.isComputer() ){
+                ((ComputerPlayer) player).setBoard(board);
+            }
+        }
+    }
 
+    @Override
     public void switchPlayers() {
         turn = (turn + 1) % 2;
         message = players[turn].getPlayerMessage();
     }
 
+    @Override
     public boolean isComputersTurn() {
         return players[turn].isComputer();
     }
@@ -61,36 +70,44 @@ public class GameState {
         return false;
     }
 
+    @Override
     public void setHumanPlayersPick(int[] position) {
         int pick = board.coordinatesToMap(position);
         players[turn].setPlayerPick(pick);
     }
 
+    @Override
     public void undoBoardMove(int[] position) {
         int move = board.coordinatesToMap(position);
         board.placePlayersMark(move, String.valueOf(move));
     }
 
+    @Override
     public String getCurrentMark() {
         return currentMark;
     }
 
+    @Override
     public String getMessage() {
         return message;
     }
 
+    @Override
     public int[] getCurrentSpace() {
         return currentSpace;
     }
 
+    @Override
     public boolean isGameOver() {
         return gameOver;
     }
 
+    @Override
     public String getPlayer1Name() {
         return player1.getPlayerName();
     }
 
+    @Override
     public String getPlayer2Name() {
         return player2.getPlayerName();
     }
