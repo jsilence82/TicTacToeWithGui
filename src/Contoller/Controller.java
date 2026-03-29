@@ -26,6 +26,7 @@ public class Controller implements GameControllerInterface {
     }
 
     public void startNewGame(String player1Name, String player2Name, String player1Type, String player2Type) {
+        uiControl.setGameRunning();
         gameControl = GameStateFactory.createGameState(player1Name, player2Name, player1Type, player2Type);
         uiControl.setPlayerTurnLabel(gameControl.getMessage());
         uiControl.setPlayerXLabel(gameControl.getPlayer1Name());

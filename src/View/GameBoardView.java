@@ -39,14 +39,9 @@ public class GameBoardView extends JFrame implements UIControl{
         setActionListener(controller);
     }
 
-    public void setPlayersFromSelectionScreen(String player1Name, String player2Name, String player1Type, String player2Type) {
-        setGameRunning();
-        controller.startNewGame(player1Name, player2Name, player1Type, player2Type);
-    }
-
     @Override
     public void launchGame(){
-        new SelectionScreen(this);    
+        new SelectionScreen(controller);
     }
 
     public void initialize() {
