@@ -1,5 +1,6 @@
 package View;
 
+import Contoller.GameControllerInterface;
 import Model.players.PlayerType;
 
 import javax.swing.*;
@@ -15,7 +16,7 @@ public class SelectionScreen extends JFrame {
     private  String player1Type;
     private  String player2Type;
 
-    public SelectionScreen(GameBoardView view) {
+    public SelectionScreen(GameControllerInterface controller) {
         setTitle("New Game");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setBounds(300, 300, 720, 300);
@@ -179,7 +180,7 @@ public class SelectionScreen extends JFrame {
             try {
                 player1Type = buttonGroupPlayer1.getSelection().getActionCommand();
                 player2Type = buttonGroupPlayer2.getSelection().getActionCommand();
-                view.setPlayersFromSelectionScreen(player1Name.getText(), player2Name.getText(), player1Type, player2Type);
+                controller.startNewGame(player1Name.getText(), player2Name.getText(), player1Type, player2Type);
                 SelectionScreen.this.dispose();
             } catch (NullPointerException npe) {
                 JOptionPane.showMessageDialog(null, "Please select your players", "Invalid Input",
