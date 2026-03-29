@@ -1,6 +1,6 @@
 package View;
 
-import Contoller.GameControllerInterface;
+import Controller.GameControllerInterface;
 import Model.players.PlayerType;
 
 import javax.swing.*;

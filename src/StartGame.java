@@ -1,4 +1,4 @@
-import Contoller.Controller;
+import Controller.Controller;
 import View.UIControl;
 import View.GameBoardView;
 

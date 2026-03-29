@@ -1,7 +1,7 @@
 package View;
 
 import Adapter.ActionAdapter;
-import Contoller.GameControllerInterface;
+import Controller.GameControllerInterface;
 
 import java.awt.*;
 import java.awt.event.*;

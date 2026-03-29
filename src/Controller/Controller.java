@@ -1,4 +1,4 @@
-package Contoller;
+package Controller;
 
 import Model.GameControls;
 import Model.GameStateFactory;
@@ -83,8 +83,8 @@ public class Controller implements GameControllerInterface {
 
     public void undoMove() {
         if (lastMoves.isEmpty()) {
-            throw new Exceptions.MoveStackEmptyException();         
-        } 
+            throw new Exceptions.MoveStackEmptyException();
+        }
             List<Integer> lastTurn = lastMoves.pop();
 
             gameControl.undoBoardMove(lastTurn.stream().mapToInt(i -> i).toArray());
@@ -99,6 +99,5 @@ public class Controller implements GameControllerInterface {
                 uiControl.undoLastTurn(computersLastTurn.stream().mapToInt(i -> i).toArray());
             }
             uiControl.setPlayerTurnLabel(gameControl.getMessage());
-        
     }
 }
