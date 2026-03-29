@@ -1,6 +1,6 @@
 package Adapter;
 
-import Contoller.GameControllerInterface;
+import Controller.GameControllerInterface;
 import Exceptions.MoveStackEmptyException;
 import View.GameBoardView;
 

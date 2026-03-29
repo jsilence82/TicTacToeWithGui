@@ -3,7 +3,7 @@ package View;
 
 
 
-import Contoller.GameControllerInterface;
+import Controller.GameControllerInterface;
 
 public interface UIControl {
 
