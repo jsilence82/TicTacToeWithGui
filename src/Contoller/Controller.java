@@ -1,5 +1,6 @@
 package Contoller;
 
+import Model.GameControls;
 import Model.GameStateFactory;
 import View.UIControl;
 
