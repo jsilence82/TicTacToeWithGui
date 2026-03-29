@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-public class Controller {
+public class Controller implements GameControllerInterface {
 
     private GameControls gameControl;
     private UIControl uiControl;

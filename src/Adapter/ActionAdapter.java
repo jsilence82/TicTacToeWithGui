@@ -1,6 +1,6 @@
 package Adapter;
 
-import Contoller.Controller;
+import Contoller.GameControllerInterface;
 import Exceptions.MoveStackEmptyException;
 import View.GameBoardView;
 
@@ -9,10 +9,10 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class ActionAdapter implements ActionListener {
-    private final Controller controller;
+    private final GameControllerInterface controller;
     private final GameBoardView view;
 
-    public ActionAdapter(Controller controller, GameBoardView view) {
+    public ActionAdapter(GameControllerInterface controller, GameBoardView view) {
         this.controller = controller;
         this.view = view;
     }

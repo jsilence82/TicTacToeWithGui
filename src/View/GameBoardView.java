@@ -1,7 +1,7 @@
 package View;
 
 import Adapter.ActionAdapter;
-import Contoller.Controller;
+import Contoller.GameControllerInterface;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -19,7 +19,7 @@ public class GameBoardView extends JFrame implements UIControl{
     public final JLabel playerOLabel;
     private final JButton undo;
     private boolean gameRunning;
-    private Controller controller;
+    private GameControllerInterface controller;
 
     public GameBoardView() {
         this.gameWindow = new JFrame("Tic Tac Toe");
@@ -34,7 +34,7 @@ public class GameBoardView extends JFrame implements UIControl{
         initialize();
     }
 
-    public void setController(Controller controller) {
+    public void setController(GameControllerInterface controller) {
         this.controller = controller;
         setActionListener(controller);
     }
@@ -91,7 +91,7 @@ public class GameBoardView extends JFrame implements UIControl{
         gameWindow.setVisible(true);
     }
 
-    public void setActionListener(Controller controller) {
+    public void setActionListener(GameControllerInterface controller) {
         ActionAdapter adapter = new ActionAdapter(controller, this);
         for (int row = 0; row < 3; row++) {
             for (int column = 0; column < 3; column++) {

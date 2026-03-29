@@ -3,7 +3,7 @@ package View;
 
 
 
-import Contoller.Controller;
+import Contoller.GameControllerInterface;
 
 public interface UIControl {
 
@@ -21,7 +21,7 @@ public interface UIControl {
 
     public void undoLastTurn(int[] lastTurn);
 
-    public void setController(Controller controller);
+    public void setController(GameControllerInterface controller);
 
     public void resetGame();
 
