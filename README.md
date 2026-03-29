@@ -17,7 +17,7 @@ The information is sent to the Controller and the View (the game field) is displ
 ### Interfaces
 - `GameControllerInterface` (Controller package) — defines the contract between the View and Controller. `Controller` implements this interface. The View and Adapter depend only on this abstraction, not the concrete `Controller` class.
 - `UIControl` (View package) — defines the contract between the Controller and the View. `GameBoardView` implements this interface.
-- `GameControls` (Controller package) — defines the contract between the Controller and the Model. `GameState` implements this interface.
+- `GameControls` (Model package) — defines the contract between the Controller and the Model. `GameState` implements this interface.
 
 ![MVC-classOnly-edit](https://user-images.githubusercontent.com/98595145/222442120-430923df-122a-4940-b979-ccfb9d30cf57.png)
 
