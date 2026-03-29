@@ -32,7 +32,7 @@ public class Controller implements GameControllerInterface {
         uiControl.setPlayerXLabel(gameControl.getPlayer1Name());
         uiControl.setPlayerOLabel(gameControl.getPlayer2Name());
         if (gameControl.isComputersTurn()) {
-            waitTwoSeconds();
+            waitOneSecond();
         }
     }
 
@@ -50,12 +50,12 @@ public class Controller implements GameControllerInterface {
             gameControl.switchPlayers();
             uiControl.setPlayerTurnLabel(gameControl.getMessage());
             if (gameControl.isComputersTurn() && !gameControl.isGameOver()) {
-                waitTwoSeconds();
+                waitOneSecond();
             }
         }
     }
 
-    private void waitTwoSeconds() {
+    private void waitOneSecond() {
         timer = new Timer(1000, e -> {
             updateGameState();
             timer.stop();
