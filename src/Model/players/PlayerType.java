@@ -25,11 +25,11 @@ public enum PlayerType{
     };
 
     private final String displayName;
-    private final String discripiton;
+    private final String description;
 
     PlayerType(String displayName, String description) {
         this.displayName = displayName;
-        this.discripiton = description;
+        this.description = description;
     }
 
     public String getDisplayName() {
@@ -37,7 +37,7 @@ public enum PlayerType{
     }
 
     public String getDescription() {
-        return discripiton;
+        return description;
     }
 
     @Override
