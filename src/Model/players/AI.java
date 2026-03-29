@@ -71,10 +71,10 @@ public class AI extends Player implements ComputerPlayer {
         int score = evaluate(mapped);
 
         if (score == 10)
-            return score;
+            return score - depth;
 
         if (score == -10)
-            return score;
+            return score + depth;
 
         if (board.boardIsFull())
             return 0;
