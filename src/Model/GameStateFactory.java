@@ -1,6 +1,5 @@
 package Model;
 
-import Contoller.GameControls;
 import Model.players.Factory;
 import Model.players.Player;
 import Model.players.PlayerType;

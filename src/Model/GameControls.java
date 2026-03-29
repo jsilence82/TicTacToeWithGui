@@ -1,4 +1,4 @@
-package Contoller;
+package Model;
 
 
 public interface GameControls {
