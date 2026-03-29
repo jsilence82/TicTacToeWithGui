@@ -17,10 +17,10 @@ public class Computer extends Player implements ComputerPlayer{
 
     @Override
     public int pickASpace() {
-        int pick = random.nextInt(9) + 1;
-        if (this.board.spaceOccupied(pick)) {
-            return pickASpace();
-        }
+        int pick;
+        do {
+            pick = random.nextInt(9) + 1;
+        } while (this.board.spaceOccupied(pick));
         return pick;
     }
 
