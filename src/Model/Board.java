@@ -50,65 +50,12 @@ public class Board {
 
     public int[] mapToCoordinates(int space) {
         int[] coordinates = new int[2];
-        switch (space) {
-            case 1:
-                break;
-            case 2:
-                coordinates[1] = 1;
-                break;
-            case 3:
-                coordinates[1] = 2;
-                break;
-            case 4:
-                coordinates[0] = 1;
-                break;
-            case 5:
-                coordinates[0] = 1;
-                coordinates[1] = 1;
-                break;
-            case 6:
-                coordinates[0] = 1;
-                coordinates[1] = 2;
-                break;
-            case 7:
-                coordinates[0] = 2;
-                break;
-            case 8:
-                coordinates[0] = 2;
-                coordinates[1] = 1;
-                break;
-            case 9:
-                coordinates[0] = 2;
-                coordinates[1] = 2;
-                break;
-        }
+        coordinates[0] = (space - 1) / 3;
+        coordinates[1] = (space - 1) % 3;
         return coordinates;
     }
 
     public int coordinatesToMap(int[] coordinates) {
-        int mapPoint = 0;
-        int x = coordinates[0];
-        int y = coordinates[1];
-
-        if (x == 0 && y == 0) {
-            mapPoint = 1;
-        } else if (x == 0 && y == 1) {
-            mapPoint = 2;
-        } else if (x == 0 && y == 2) {
-            mapPoint = 3;
-        } else if (x == 1 && y == 0) {
-            mapPoint = 4;
-        } else if (x == 1 && y == 1) {
-            mapPoint = 5;
-        } else if (x == 1 && y == 2) {
-            mapPoint = 6;
-        } else if (x == 2 && y == 0) {
-            mapPoint = 7;
-        } else if (x == 2 && y == 1) {
-            mapPoint = 8;
-        } else if (x == 2 && y == 2) {
-            mapPoint = 9;
-        }
-        return mapPoint;
+        return coordinates[0] * 3 + coordinates[1] + 1;
     }
 }
